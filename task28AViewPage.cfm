@@ -1,13 +1,14 @@
+
+<cfif NOT IsDefined ('session.userName')>
+    <cflocation url="task28Login.cfm" addtoken="No">
+</cfif>
 <html> 
     <head> 
         <title>Page Details</title> 
     </head> 
     <body> 
-        <cfquery name="GetRecordtoUpdate" datasource="task28"> 
-            SELECT * FROM pageTable 
-            WHERE pageId = #URL.pageId# 
-        </cfquery> 
-        <cfoutput query="GetRecordtoUpdate"> 
+        <cfinvoke component="components.task28"  method="selectQuery" returnvariable="process" data="#URL.pageId#">
+        <cfoutput query="process"> 
                     <h2> #pageName#</h2> 
                     <p> #pageDesc# </p> 
         </cfoutput> 

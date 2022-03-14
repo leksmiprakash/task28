@@ -1,9 +1,5 @@
-<cfquery name="DeleteData" 
-    datasource="task28"> 
-        DELETE FROM pageTable 
-        WHERE pageId = #URL.pageId# 
-</cfquery> 
-<h1>Page Deleted </h1> 
-<cfoutput> 
-    You have deleted the information
-</cfoutput> 
+
+<cfinvoke component="components.task28" method="deleteQuery" returnvariable="result">
+</cfinvoke> 
+<cfoutput> Deleted Successfully </cfoutput>
+<cflocation url="./task28Update.cfm">

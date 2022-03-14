@@ -14,19 +14,17 @@
     <body>
         <div class="container">
 	        <div class="row">
-                <cfquery name="pages" datasource="task28" result="r">
-                    SELECT * FROM pageTable
-                </cfquery>
+                <cfinvoke component="components.task28"  method="getQuery" returnvariable="selectQuery">
                 <table class="table table-bordered"> 
                     <tr> 
                         <td align="center">Page Name</td> 
                         <td align="center">Page Description</td> 
                         <td align="center">Action</td> 
                     </tr> 
-                    <cfoutput query="pages">
+                    <cfoutput query="selectQuery">
                         <tr>
-                            <td>#pages.PageName#</td> 
-                            <td>#pages.pageDesc# </td> 
+                            <td>#selectQuery.PageName#</td> 
+                            <td>#selectQuery.pageDesc# </td> 
                             <td>
                                 <button class="btn btn-warning"><a href="updatePage.cfm?pageId=#pageId#">Edit</a></button>
                                 <button class="btn btn-danger"><a href="deleteAction.cfm?pageId=#pageId#" onclick="return confirm('Are you sure?');">Delete</a></button>

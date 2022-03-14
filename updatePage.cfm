@@ -3,11 +3,8 @@
         <title>Update Form</title> 
     </head> 
     <body> 
-        <cfquery name="GetRecordtoUpdate" datasource="task28"> 
-            SELECT * FROM pageTable 
-            WHERE pageId = #URL.pageId# 
-        </cfquery> 
-        <cfoutput query="GetRecordtoUpdate"> 
+        <cfinvoke component="components.task28"  method="selectQuery" returnvariable="process" data="#URL.pageId#">
+        <cfoutput query="process"> 
             <table> 
                 <form action="updateAction.cfm" method="Post"> 
                     <input type="Hidden" name="pageId" value="#pageId#"><br> 
@@ -25,8 +22,7 @@
                         <td><input type="Submit" name="formSubmit" value="Update Information"></td> 
                     </tr> 
                 </form> 
-            </table> 
-           
+            </table>            
         </cfoutput> 
-        </body> 
+    </body> 
 </html>

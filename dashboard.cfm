@@ -31,10 +31,8 @@
                                     <a href="<cfoutput>task28AddPage.cfm</cfoutput>" class="nav-item nav-link" >Add Page</a><br>
                                     <a href="<cfoutput>task28Update.cfm</cfoutput>" class="nav-item nav-link" >View pages</a><br>
                                 <cfelse>
-                                    <cfquery name="pages" datasource="task28" result="r">
-                                        SELECT * FROM pageTable
-                                    </cfquery>
-                                    <cfoutput query="pages">
+                                    <cfinvoke component="components.task28"  method="getQuery" returnvariable="selectQuery">
+                                    <cfoutput query="selectQuery">
                                         <a href="task28AViewPage.cfm?pageId=#pageId#" class="nav-item nav-link" >#pageName#</a><br>
                                     </cfoutput>
                                 </cfif>

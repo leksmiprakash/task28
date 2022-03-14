@@ -26,15 +26,10 @@
 			<cfset caption = #URL.status#>
 		</cfif>
 		<cfif isDefined("URL.login")>
-			<cflock scope="session" timeout="20" type="readonly">
-				<cfquery name="authUser" datasource="task28">
-					SELECT userId,role
-					FROM users
-					WHERE (users.userName = '#trim(URL.userName)#' AND users.pwd = '#trim(URL.password)#' AND users.role = '#trim(URL.role)#')
-				</cfquery>
-			</cflock>
+			<cfinvoke component="components.task28"  method="authUser" returnvariable="process">
+    		</cfinvoke>  
 		
-			<cfif authUser.recordcount EQ 1>
+			<cfif process.recordcount EQ 1>
 				<cflock timeout="20" throwontimeout="No" type="EXCLUSIVE" scope="SESSION">
 					<cfset SESSION.userName = URL.userName>
 					<cfset SESSION.password = URL.password>

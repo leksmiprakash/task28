@@ -1,3 +1,8 @@
+
+<cfif NOT IsDefined ('session.userName')>
+    <cflocation url="task28Login.cfm" addtoken="No">
+</cfif>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,16 +26,14 @@
                 </tr>
                 <tr> 
                     <td>&nbsp;</td> 
-                    <td><input type="Submit" value="Submit" name="formSubmit"></td> 
+                    <td><input type="Submit" value="Submit" name="insertSubmit"></td> 
                 </tr> 
             </form> 
             <!--- end html form ---> 
         </table> 
-        <cfif StructKeyExists(Form,'formSubmit')>
-           <cfquery name="AddUsers" datasource="task28"> 
-                INSERT INTO pageTable (pageName,pageDesc)
-                VALUES ('#Form.pageName#', '#Form.pageDesc#') 
-            </cfquery> 
+        <cfif StructKeyExists(Form,'insertSubmit')>
+            <cfinvoke component="components.task28"  method="insertQuery" returnvariable="process">
+            </cfinvoke>   
             <cfoutput>Inserted Successfully</cfoutput>
         </cfif>
     </body> 

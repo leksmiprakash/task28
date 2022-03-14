@@ -32,16 +32,14 @@
                 </tr> 
                 <tr> 
                     <td>&nbsp;</td> 
-                    <td><input type="Submit" value="Submit" name="formSubmit"></td> 
+                    <td><input type="Submit" value="Submit" name="registerSubmit"></td> 
                 </tr> 
             </form> 
             <!--- end html form ---> 
         </table> 
-        <cfif StructKeyExists(Form,'formSubmit')>
-           <cfquery name="AddUsers" datasource="task28"> 
-                INSERT INTO users (userName,pwd,role)
-                VALUES ('#Form.userName#', '#Form.pwd#', '#Form.role#') 
-            </cfquery> 
+        <cfif StructKeyExists(Form,'registerSubmit')>
+           <cfinvoke component="components.task28"  method="registerQuery" returnvariable="process"> 
+            </cfinvoke>  
             <cfoutput>Inserted Successfully</cfoutput>
         </cfif>
     </body> 

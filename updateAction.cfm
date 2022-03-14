@@ -1,8 +1,4 @@
-<cfquery name="UpdatePage" datasource="task28"> 
-    UPDATE pageTable 
-    SET pageName = '#Form.pageName#', 
-    pageDesc = '#Form.pageDesc#'
-    WHERE pageId = #Form.pageId# 
-</cfquery> 
+<cfinvoke component="components.task28" method="updateQuery" returnvariable="result">
+</cfinvoke> 
 <cfoutput> Updated Successfully </cfoutput>
 <cflocation url="./task28Update.cfm">
